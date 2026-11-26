@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2775.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="fr"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Polynésie 2027 — Planning&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-slate-50 text-slate-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const { useState, useMemo } = React;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const PEOPLE = ["Martin", "Lahaina", "Louise", "Jérémy", "Morgan", "Margaux", "Thomas"];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const PLACES = ["France", "Tahiti", "Bora Bora", "Maupiti", "Rangiroa", "Fakarava", "Transit"];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const INITIAL_EVENTS = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 1, title: "Vol Paris Orly → Papeete", date: "2027-05-27", timeTaht: "06:50", note: "Départ Orly 26/05 18h30 (Paris) → Arrivée Tahiti 27/05 04h50 (TAHT)", people: ["Martin", "Lahaina", "Louise", "Jérémy"], place: "Tahiti", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 2, title: "Vol Papeete → Bora Bora", date: "2027-05-27", timeTaht: "08:05", note: "Départ 07h15 → Arrivée Motu Mute 08h05 (TAHT)", people: ["Louise", "Jérémy"], place: "Bora Bora", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 3, title: "Ferry Bora Bora → Maupiti", date: "2027-06-01", timeTaht: "14:55", note: "Apetahi Express : départ 13h40 → arrivée 14h55 (TAHT)", people: ["Louise", "Jérémy"], place: "Maupiti", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 4, title: "Ferry Maupiti → Bora Bora", date: "2027-06-05", timeTaht: "07:45", note: "Apetahi Express : départ 06h30 → arrivée Vaitape 07h45 (TAHT)", people: ["Louise", "Jérémy"], place: "Bora Bora", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 5, title: "Vol Bora Bora → Rangiroa", date: "2027-06-05", timeTaht: "12:55", note: "Départ 11h40 → arrivée 12h55 (TAHT)", people: ["Louise", "Jérémy"], place: "Rangiroa", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 6, title: "Vol Paris Orly → Papeete", date: "2027-06-07", timeTaht: "04:50", note: "Départ Orly 06/06 18h30 (Paris) → Arrivée Tahiti 07/06 04h50 (TAHT)", people: ["Morgan", "Margaux", "Thomas"], place: "Tahiti", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 7, title: "Vol Rangiroa → Tahiti", date: "2027-06-10", timeTaht: "15:55", note: "Départ 14h55 → arrivée 15h55 (TAHT) ; séjour chez Martin &amp; Lahaina", people: ["Louise", "Jérémy"], place: "Tahiti", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 8, title: "Vol Papeete → Paris Orly", date: "2027-06-24", timeTaht: "07:00", note: "Départ Papeete 24/06 07h00 (TAHT) → Arrivée Orly 25/06 16h20 (Paris)", people: ["Louise", "Jérémy"], place: "France", todo: false },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 9, title: "Vol retour Thomas", date: "2027-06-26", timeTaht: "12:00", note: "À renseigner par Thomas (départ 1 semaine avant Morgan &amp; Margaux)", people: ["Thomas"], place: "France", todo: true },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ id: 10, title: "Vol Papeete → Paris Orly", date: "2027-07-03", timeTaht: "07:00", note: "Départ Papeete 03/07 07h00 (TAHT) → Arrivée Orly 04/07 16h20 (Paris)", people: ["Morgan", "Margaux"], place: "France", todo: false }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getDatesRange(startStr, endStr) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const dates = [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let cur = new Date(startStr + "T12:00:00Z");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const end = new Date(endStr + "T12:00:00Z");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>while (cur &lt;= end) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>dates.push(cur.toISOString().slice(0, 10));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cur.setUTCDate(cur.getUTCDate() + 1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return dates;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function App() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [currentUser, setCurrentUser] = useState("");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [events, setEvents] = useState(INITIAL_EVENTS);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [title, setTitle] = useState("");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [date, setDate] = useState("2027-06-26");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [timeTaht, setTimeTaht] = useState("07:00");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [place, setPlace] = useState("Tahiti");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [selectedPeople, setSelectedPeople] = useState(["Thomas"]);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const [note, setNote] = useState("");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const dates = useMemo(() =&gt; getDatesRange("2027-05-22", "2027-07-04"), []);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const presenceMatrix = useMemo(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const stateByPerson = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Martin: "Tahiti",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Lahaina: "Tahiti",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Louise: "France",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Jérémy: "France",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Morgan: "France",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Margaux: "France",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Thomas: "France"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const matrix = {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (const d of dates) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const dayEvents = events.filter(ev =&gt; ev.date === d).sort((a, b) =&gt; a.timeTaht.localeCompare(b.timeTaht));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>for (const ev of dayEvents) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (const p of ev.people) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>stateByPerson[p] = ev.place;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>matrix[d] = { ...stateByPerson };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return matrix;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, [dates, events]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>function togglePerson(person) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setSelectedPeople(prev =&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>prev.includes(person) ? prev.filter(x =&gt; x !== person) : [...prev, person]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>function handleAddEvent(e) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!title.trim() || selectedPeople.length === 0) return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setEvents(prev =&gt; [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>...prev,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>id: Date.now(),</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: title.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">            </span>date,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timeTaht,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>place,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>people: selectedPeople,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>note: note.trim() || "Ajouté en heure de Polynésie (TAHT)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>todo: false</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTitle("");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setNote("");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="max-w-7xl mx-auto p-4 md:p-6 space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;header className="bg-white rounded-2xl shadow-sm border p-5 flex flex-wrap items-center justify-between gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h1 className="text-2xl font-bold text-sky-900"&gt;Polynésie 2027 — Qui est où ?&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p className="text-sm text-slate-600"&gt;Tous les horaires sont affichés en &lt;strong&gt;Heure de Tahiti (TAHT, UTC-10)&lt;/strong&gt;.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex items-center gap-2 flex-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span className="text-sm font-medium text-slate-700"&gt;Qui es-tu ?&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{PEOPLE.map(p =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>key={p}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>type="button"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>onClick={() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setCurrentUser(p);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setSelectedPeople([p]);</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>className={`px-3 py-1.5 rounded-full text-sm font</p>
+</body>
+</html>
