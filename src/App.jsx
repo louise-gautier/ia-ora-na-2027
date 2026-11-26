@@ -35,12 +35,12 @@ import {
 // ============================================================================
 
 const PARTICIPANTS = [
-  { id: 'martin', name: 'Martin', role: 'Hôte à Tahiti', color: 'bg-teal-600', lightBg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-200', initials: 'MA' },
-  { id: 'lahaina', name: 'Lahaina', role: 'Hôte à Tahiti', color: 'bg-emerald-600', lightBg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', initials: 'LA' },
+  { id: 'martin', name: 'Martin', role: 'Bel Hôte', color: 'bg-teal-600', lightBg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-200', initials: 'MA' },
+  { id: 'lahaina', name: 'Lahaina', role: 'Belle Hôte', color: 'bg-emerald-600', lightBg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', initials: 'LA' },
   { id: 'louise', name: 'Louise', role: 'Mariée 💍', color: 'bg-rose-500', lightBg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200', initials: 'LO' },
   { id: 'jeremy', name: 'Jérémy', role: 'Marié 💍', color: 'bg-sky-600', lightBg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200', initials: 'JÉ' },
-  { id: 'morgan', name: 'Morgan', role: 'Frère de Jérémy', color: 'bg-indigo-600', lightBg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200', initials: 'MO' },
-  { id: 'margaux', name: 'Margaux', role: 'Copine de Morgan', color: 'bg-purple-600', lightBg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', initials: 'MX' },
+  { id: 'morgan', name: 'Morgan', role: 'Frère du Marié', color: 'bg-indigo-600', lightBg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200', initials: 'MO' },
+  { id: 'margaux', name: 'Margaux', role: 'Fan de Beluga', color: 'bg-purple-600', lightBg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', initials: 'MX' },
   { id: 'thomas', name: 'Thomas', role: 'Frère de Margaux', color: 'bg-amber-600', lightBg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', initials: 'TH' },
 ];
 
@@ -51,7 +51,7 @@ const LOCATIONS = {
     cellBg: 'bg-teal-500 text-white',
     dot: 'bg-teal-500',
     short: 'Tahiti',
-    description: 'Chez Martin & Lahaina (Papeete / Arue / Punaauia)'
+    description: 'Chez Martin & Lahaina'
   },
   'Bora Bora': {
     label: 'Bora Bora',
@@ -93,12 +93,12 @@ const LOCATIONS = {
     short: 'Transit',
     description: 'Déplacement aérien ou maritime'
   },
-  France: {
-    label: 'France (Gironde / Paris)',
+  Hexagone: {
+    label: 'Hexagone (Gironde / Paris)',
     badgeBg: 'bg-indigo-100 text-indigo-800 border-indigo-300',
     cellBg: 'bg-indigo-100 text-indigo-800 border border-indigo-200',
     dot: 'bg-indigo-400',
-    short: 'France',
+    short: 'Hexagone',
     description: 'Métropole (Mariage en Gironde / Départ Paris)'
   }
 };
@@ -110,9 +110,9 @@ const INITIAL_EVENTS = [
     id: 'evt-mariage',
     title: 'Mariage de Louise & Jérémy en Gironde',
     type: 'activite',
-    location: 'France',
-    fromLocation: 'France',
-    toLocation: 'France',
+    location: 'Hexagone',
+    fromLocation: 'Hexagone',
+    toLocation: 'Hexagone',
     startTaht: '2027-05-22T03:00', // 15h00 heure de Paris
     endTaht: '2027-05-22T17:00',   // 05h00 (+1j) heure de Paris
     parisNote: 'Samedi 22 mai 2027 en Gironde (15h00 heure locale de Paris)',
@@ -290,7 +290,7 @@ const INITIAL_EVENTS = [
     id: 'evt-vol-retour-maries',
     title: 'Vol Tahiti → Paris Orly (Retour Louise & Jérémy)',
     type: 'avion',
-    location: 'France',
+    location: 'Hexagone',
     fromLocation: 'Tahiti Faa’a (PPT)',
     toLocation: 'Paris Orly (ORY)',
     startTaht: '2027-06-24T07:00',
@@ -305,7 +305,7 @@ const INITIAL_EVENTS = [
     id: 'evt-vol-retour-thomas',
     title: 'Vol retour Tahiti → Paris (Thomas) — Horaires à préciser',
     type: 'avion',
-    location: 'France',
+    location: 'Hexagone',
     fromLocation: 'Tahiti Faa’a (PPT)',
     toLocation: 'Paris Orly (ORY)',
     startTaht: '2027-06-26T07:00',
@@ -335,7 +335,7 @@ const INITIAL_EVENTS = [
     id: 'evt-vol-retour-morgan',
     title: 'Vol Tahiti → Paris Orly (Retour Morgan & Margaux)',
     type: 'avion',
-    location: 'France',
+    location: 'Hexagone',
     fromLocation: 'Tahiti Faa’a (PPT)',
     toLocation: 'Paris Orly (ORY)',
     startTaht: '2027-07-03T07:00',
@@ -456,11 +456,11 @@ function getPersonStatusOnDay(personId, dayStr, events) {
   const isHost = personId === 'martin' || personId === 'lahaina';
 
   if (dayStr < '2027-05-26') {
-    currentLocation = 'France'; // Mariage en Gironde le 22 mai et préparatifs
+    currentLocation = 'Hexagone'; // Mariage en Gironde le 22 mai et préparatifs
   } else if (isHost && dayStr >= '2027-05-27') {
     currentLocation = 'Tahiti'; // Résidents à Tahiti
   } else {
-    currentLocation = 'France'; // Par défaut en métropole avant arrivée ou après retour
+    currentLocation = 'Hexagone'; // Par défaut en métropole avant arrivée ou après retour
   }
 
   // Trier tous les événements de la personne chronologiquement pour déterminer sa position exacte à 23h59 le dayStr
@@ -494,13 +494,13 @@ function getPersonStatusOnDay(personId, dayStr, events) {
   // Départ Papeete 07h00 TAHT le jour J -> Arrivée Paris le jour J+1 à 04h20 TAHT (16h20 Paris)
   // Le jour J, la personne est "Transit" (départ matin de Tahiti), le jour J+1 elle est en "France".
   for (const ev of sortedEvents) {
-    if (ev.type === 'avion' && ev.location === 'France') {
+    if (ev.type === 'avion' && ev.location === 'Hexagone') {
       const s = isoToMinutes(ev.startTaht);
       const e = isoToMinutes(ev.endTaht);
       if (s >= dayStartMin && s <= dayEndMin) {
         currentLocation = 'Transit';
       } else if (e >= dayStartMin && e <= dayEndMin) {
-        currentLocation = 'France';
+        currentLocation = 'Hexagone';
       }
     }
   }
@@ -757,7 +757,7 @@ export default function App() {
                 </span>
               </div>
               <p className="text-xs text-sky-100 hidden sm:block">
-                Mariage Louise & Jérémy • Voyage en Polynésie française (22 mai – 4 juil. 2027)
+                Voyage en Polynésie française (22 mai – 4 juil. 2027)
               </p>
             </div>
           </div>
@@ -843,34 +843,6 @@ export default function App() {
       </header>
 
       {/* ====================================================================
-          BANDEAU D'ALERTE POUR LES ÉLÉMENTS À COMPLÉTER (EX: VOL DE THOMAS)
-         ==================================================================== */}
-      {pendingEvents.length > 0 && (
-        <div className="bg-amber-50 border-b border-amber-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-sm text-amber-900">
-              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>
-                <strong>{pendingEvents.length} info(s) à compléter :</strong>{' '}
-                {pendingEvents.map(p => p.title).join(' • ')}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              {pendingEvents.map(pe => (
-                <button
-                  key={pe.id}
-                  onClick={() => openEditModal(pe)}
-                  className="text-xs font-semibold bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-lg shadow-xs transition cursor-pointer"
-                >
-                  Compléter ({pe.participants.map(id => PARTICIPANTS.find(x => x.id === id)?.name).join(', ')})
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ====================================================================
           CONTENU PRINCIPAL
          ==================================================================== */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
@@ -881,8 +853,7 @@ export default function App() {
               <Compass className="w-4 h-4" />
             </div>
             <div>
-              <span className="font-semibold text-slate-800">100 % calé sur l’heure de Tahiti (UTC-10) :</span>{' '}
-              Paris est à <strong>+12h</strong> en été (ex : un départ de Paris à 18h30 correspond à 06h30 le même jour à Tahiti).
+              <span className="font-semibold text-slate-800">100 % calé sur l’heure de Tahiti (UTC-10) :</span>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-1.5">
