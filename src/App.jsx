@@ -853,7 +853,7 @@ export default function App() {
               <Compass className="w-4 h-4" />
             </div>
             <div>
-              <span className="font-semibold text-slate-800">100 % calé sur l’heure de Tahiti (UTC-10) :</span>
+              <span className="font-semibold text-slate-800">100 % calé sur l’heure de Tahiti (UTC-10)</span>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-1.5">
